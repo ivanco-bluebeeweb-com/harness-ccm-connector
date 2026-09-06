@@ -1,3 +1,14 @@
-# Harness CCM Connector - CONNECTOR_DISCOVERY.md
+# Harness Cloud Cost Management Connector — Connector Discovery
 
-Standard documentation for Harness CCM Connector in Imperal Cloud.
+**Vendor API Baseline:** https://harness.io
+
+## Архитектура API
+- **Базовый адрес:** `https://app.harness.io/gateway/ccm/api`
+- **Протокол:** REST / HTTPS (JSON)
+- **Аутентификация:** Harness API Key (x-api-key header)
+- **Ключевые эндпоинты:**
+  - бюджеты (/budgets)
+  - рекомендации по автоскейлингу (/recommendations)
+  - аномалии (/anomalies)
+  - кластеры Kubernetes
+- **Тестовая точка проверки подключения:** `GET /gateway/ccm/api/budgets`.

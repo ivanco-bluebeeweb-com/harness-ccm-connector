@@ -1,3 +1,30 @@
-# Harness CCM Connector - PREPARATION.md
+# Harness Cloud Cost Management Connector — Preparation
 
-Standard documentation for Harness CCM Connector in Imperal Cloud.
+**Category:** C41. Cloud Cost Management (FinOps)  
+**Status:** App Preparation Complete (Genuinely Vendor-Specific)  
+**Standard:** APP_PREPARATION_STANDARD.md
+
+## 1. Паспорт коннектора
+- **Название:** Harness Cloud Cost Management Connector (`harness-ccm-connector`)
+- **Официальный портал вендора:** https://harness.io
+- **Базовый API:** `https://app.harness.io/gateway/ccm/api`
+- **Модель аутентификации:** Harness API Key (x-api-key header)
+- **Назначение:** Интеграция платформы Imperal Cloud с Harness Cloud Cost Management для автоматизации предметной области: автоматическая оптимизация стоимости облака, обнаружение простаивающих ресурсов (idle compute) и автоостановка.
+
+## 2. Решаемая проблема
+Когда **Cloud Architect** сталкивается с задачей **автоматическая оптимизация стоимости облака, обнаружение простаивающих ресурсов (idle compute) и автоостановка**, возникает необходимость ручного мониторинга, дублирования статусов и переключения между окнами. Это приводит к потере времени, замедлению реакции на инциденты и ошибкам ручного ввода.
+
+## 3. Роли и права доступа
+- **Cloud Architect, DevOps-инженер, FinOps-лид**
+- Принцип наименьших привилегий (Least Privilege): токен запрашивает доступ только к разрешенным операциям чтения и подтвержденным действиям.
+
+## 4. Ключевые сущности
+бюджеты (/budgets), рекомендации по автоскейлингу (/recommendations), аномалии (/anomalies), кластеры Kubernetes
+
+## 5. Первичный рабочий сценарий
+`сканирование неиспользуемых подов K8s -> генерация рекомендаций по оптимизации -> утверждение уменьшения квот`.
+
+## 6. Границы коннектора
+- Изолированное хранение секретов (BYOC).
+- Никаких фиктивных методов сторонних предметных областей.
+- Деструктивные операции требуют явного подтверждения пользователя.
