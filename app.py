@@ -4,7 +4,7 @@ import json
 from imperal_sdk import ChatExtension, Extension
 
 ext = Extension(
-    "harness_ccm-connector",
+    "harness-ccm-connector",
     version="0.1.0",
     display_name="Harness CCM",
     icon="icon.svg",

@@ -42,7 +42,7 @@ async def resolve_connection(ctx, connection_id: str = "") -> dict | None:
     "Connect Harness CCM account via credentials.",
     action_type="write",
     chain_callable=True,
-    event="harness_ccm-connector.connect_harness_ccm",
+    event="harness-ccm-connector.connect_harness_ccm",
     effects=["create:connection"],
     data_model=ConnectParams
 )
@@ -81,7 +81,7 @@ async def list_connections(params: NoParams, ctx) -> ActionResult[ConnectionList
     "Disconnect Harness CCM account.",
     action_type="write",
     chain_callable=True,
-    event="harness_ccm-connector.disconnect_harness_ccm",
+    event="harness-ccm-connector.disconnect_harness_ccm",
     effects=["delete:connection"],
     data_model=ConnectionIdParams
 )
