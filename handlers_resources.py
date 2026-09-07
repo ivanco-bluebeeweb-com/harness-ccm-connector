@@ -10,7 +10,7 @@ from schemas import (
 from handlers_connection import resolve_client
 
 @chat.function("list_costs", "List costs in Harness CCM.", action_type="read", chain_callable=True, event="harness-ccm-connector.list_costs", effects=["read:costs"], data_model=CostRecordList)
-async def list_costs(params: ListCostRecordParams, ctx) -> ActionResult:
+async def list_costs(ctx, params: ListCostRecordParams) -> ActionResult:
     client = await resolve_client(ctx, params.connection_id)
     try:
         raw_items = await client.list_costs(limit=params.limit)
@@ -24,7 +24,7 @@ async def list_costs(params: ListCostRecordParams, ctx) -> ActionResult:
         return ActionResult.error(f"Error listing costs: {e}")
 
 @chat.function("get_costrecord", "Get details of one CostRecord in Harness CCM.", action_type="read", chain_callable=True, event="harness-ccm-connector.get_costrecord", effects=["read:costrecord"], data_model=CostRecordRecord)
-async def get_costrecord(params: GetCostRecordParams, ctx) -> ActionResult:
+async def get_costrecord(ctx, params: GetCostRecordParams) -> ActionResult:
     client = await resolve_client(ctx, params.connection_id)
     try:
         r = await client.get_costrecord(params.costrecord_id)
@@ -35,7 +35,7 @@ async def get_costrecord(params: GetCostRecordParams, ctx) -> ActionResult:
         return ActionResult.error(f"Error retrieving CostRecord: {e}")
 
 @chat.function("audit_costrecord_health", "Audit health of Harness CCM costs and connectivity.", action_type="read", chain_callable=True, event="harness-ccm-connector.audit_costrecord_health", effects=["read:audit"], data_model=AuditHealthReport)
-async def audit_costrecord_health(params: ConnectionIdParams, ctx) -> ActionResult:
+async def audit_costrecord_health(ctx, params: ConnectionIdParams) -> ActionResult:
     client = await resolve_client(ctx, params.connection_id)
     try:
         items = await client.list_costs(limit=50)
